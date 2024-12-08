@@ -1,0 +1,30 @@
+<div class="search">
+    <input
+      type="text"
+      [formControl]="city"
+      placeholder="Search city"
+      name="city"
+      required
+    />
+    <button (click)="searchCity()">Search</button>
+</div>
+
+<div class="container">
+  @if (this.showedRecord !== null) {
+    <div class="weather-data">
+      <div class="location">{{ this.showedRecord.city}}</div>
+      <div class="temperature">{{ this.showedRecord.temperature }}°C</div>
+    </div>
+  }
+</div>
+<div class="records">
+  <h3>Saved Records:</h3>
+  <ul>
+    @for (record of records; track $index) {
+      <li>
+        {{ record.city }}: {{ record.temperature }}°C
+        <button (click)="deleteRecord(record.id)">Delete</button>
+      </li>
+    }
+  </ul>
+</div>
